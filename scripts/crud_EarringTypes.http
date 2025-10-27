@@ -5,6 +5,8 @@ IT-202-005
 Phase 1 Assignment: Login and Logout
 xrf@njit.edu
 */
+
+###
 POST http://localhost:3000/addearringtype.test.php
 Content-Type: application/x-www-form-urlencoded
 
