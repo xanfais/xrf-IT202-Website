@@ -1,8 +1,8 @@
 /*
 Xander Faison
-10/12/2025
+10/26/2025
 IT-202-005
-Phase 1 Assignment: Login and Logout
+Phase 2 Assignment: CRUD Categories and Items
 xrf@njit.edu
 */
 CREATE TABLE EarringManagers (
