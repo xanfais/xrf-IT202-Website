@@ -12,6 +12,7 @@ class EarringType
    public $earringtypeID;
    public $earringtypeCode;
    public $earringtypeName;
+    public $earringStockNumber;
    function __construct($earringtypeID, $earringtypeCode, $earringtypeName)
    {
        $this->earringtypeID = $earringtypeID;
@@ -27,13 +28,17 @@ class EarringType
    function saveEarringType()
    {
        $db = getDB();
-       $query = "INSERT INTO EarringsTypes VALUES (?, ?, ?)";
+       // Table created in scripts uses EarringTypes (singular 'EarringTypes')
+       // Insert explicit columns; EarringStockNumber may be an empty string by default
+       $query = "INSERT INTO EarringTypes (EarringTypeID, EarringTypeCode, EarringTypeName, EarringStockNumber) VALUES (?, ?, ?, ?)";
        $stmt = $db->prepare($query);
+       $stock = isset($this->earringStockNumber) ? $this->earringStockNumber : '';
        $stmt->bind_param(
-           "iss",
+           "isss",
            $this->earringtypeID,
            $this->earringtypeCode,
-           $this->earringtypeName
+           $this->earringtypeName,
+           $stock
        );
        $result = $stmt->execute();
        $db->close();
@@ -42,21 +47,24 @@ class EarringType
         static function getEarringsType()
    {
        $db = getDB();
-       $query = "SELECT * FROM EarringsTypes";
+       $query = "SELECT * FROM EarringTypes";
        $result = $db->query($query);
        if (mysqli_num_rows($result) > 0) {
-           $EarringsTypes = array();
+           $earringTypes = array();
            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                $earringtype = new EarringType(
-                   $row['earringtypeID'],
-                   $row['earringtypeCode'],
-                   $row['earringtypeName']
+                   $row['EarringTypeID'],
+                   $row['EarringTypeCode'],
+                   $row['EarringTypeName']
                );
-               array_push($earringtypestatements, $earringtype);
-               unset($earringtype);
+               // populate optional stock number if present
+               if (isset($row['EarringStockNumber'])) {
+                   $earringtype->earringStockNumber = $row['EarringStockNumber'];
+               }
+               array_push($earringTypes, $earringtype);
            }
            $db->close();
-           return $earringtypestatements;
+           return $earringTypes;
        } else {
            $db->close();
            return NULL;
@@ -65,15 +73,18 @@ class EarringType
    static function findEarringType($earringtypeID)
    {
        $db = getDB();
-       $query = "SELECT * FROM EarringsTypes WHERE earringtypeID = $earringtypeID";
+       $query = "SELECT * FROM EarringTypes WHERE EarringTypeID = $earringtypeID";
        $result = $db->query($query);
        $row = $result->fetch_array(MYSQLI_ASSOC);
        if ($row) {
            $earringtype = new EarringType(
-               $row['earringtypeID'],
-               $row['earringtypeCode'],
-               $row['earringtypeName']
+               $row['EarringTypeID'],
+               $row['EarringTypeCode'],
+               $row['EarringTypeName']
            );
+           if (isset($row['EarringStockNumber'])) {
+               $earringtype->earringStockNumber = $row['EarringStockNumber'];
+           }
            $db->close();
            return $earringtype;
        } else {
@@ -84,16 +95,14 @@ class EarringType
    function updateEarringType()
    {
        $db = getDB();
-       $query = "UPDATE EarringsTypes SET earringtypeID = ?, earringtypeCode = ?, " .
-           "earringtypeName = ? " .
-           "WHERE earringtypeID = $this->earringtypeID";
-       $stmt = $db->prepare($query);
-       $stmt->bind_param(
-           "iss",
-           $this->earringtypeID,
+       $query = "UPDATE EarringTypes SET EarringTypeCode = ?, EarringTypeName = ?, EarringStockNumber = ? WHERE EarringTypeID = $this->earringtypeID";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param(
+           "sss",
            $this->earringtypeCode,
-           $this->earringtypeName
-       );
+           $this->earringtypeName,
+           $this->earringStockNumber
+        );
        $result = $stmt->execute();
        $db->close();
        return $result;
@@ -101,7 +110,7 @@ class EarringType
    function removeEarringType()
    {
        $db = getDB();
-       $query = "DELETE FROM EarringsTypes WHERE earringtypeID = $this->earringtypeID";
+       $query = "DELETE FROM EarringTypes WHERE EarringTypeID = $this->earringtypeID";
        $result = $db->query($query);
        $db->close();
        return $result;

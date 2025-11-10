@@ -7,12 +7,22 @@ Phase 1 Assignment: Login and Logout
 xrf@njit.edu
 */
 session_start();
+require_once("earringtype.php");
+require_once("earring.php");
 ?>
 <!DOCTYPE html>
 <html>
-<head><title>Welcome to the Earring Shop</title></head>
+<head>
+   <title>Earring Shop</title>
+</head>
 <body>
-   <section id="container">
+   <header>
+       <?php include("header.inc.php"); ?>
+   </header>
+   <section style="height: 425px;">
+       <nav>
+           <?php include("nav.inc.php"); ?>
+       </nav>
        <main>
            <?php
            if (isset($_REQUEST['content'])) {
@@ -23,5 +33,8 @@ session_start();
            ?>
        </main>
    </section>
+   <footer>
+       <?php include("footer.inc.php"); ?>
+   </footer>
 </body>
 </html>

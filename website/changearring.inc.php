@@ -5,7 +5,8 @@ Xander Faison
 IT-202-005
 Phase 2 Assignment: CRUD Categories and Items
 xrf@njit.edu
-*/
+ */
+ session_start();
  require_once("earring.php");
 if (isset($_SESSION['login'])) {
    $earringID = $_POST['earringID'];

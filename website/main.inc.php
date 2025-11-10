@@ -9,7 +9,7 @@ xrf@njit.edu
 if (!isset($_SESSION['login'])) {
 ?>
   <h2>Please log in to the Earring Shop Material Website</h2><br>
-  <form name="login" action="index.php" method="post">
+  <form name="login" action="validate.inc.php" method="post">
     <label>Email:</label>
     <input type="text" name="emailAddress" size="20">
     <br>
@@ -19,7 +19,6 @@ if (!isset($_SESSION['login'])) {
     <br>
     <br>
     <input type="submit" value="Login">
-    <input type="hidden" name="content" value="validate">
   </form>
 <?php
 } else {
@@ -32,7 +31,7 @@ if (!isset($_SESSION['login'])) {
    <p>This program tracks category and item inventory</p>
    <p>Please use the links in the navigation window</p>
    <p>Please DO NOT use the browser navigation buttons!</p>
-   <a href="index.php?content=logout"><strong>Logout</strong></a>
+  <a href="logout.inc.php"><strong>Logout</strong></a>
 <?php
 }
 ?>

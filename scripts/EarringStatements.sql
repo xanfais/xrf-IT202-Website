@@ -19,3 +19,13 @@ DateTimeCreated     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 DateTimeUpdated     TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 PRIMARY KEY ( EarringID )
 );
+
+INSERT INTO Earring (EarringID, EarringCode, EarringName, EarringDescription, Material, Diameter, EarringTypeID, EarringWholesalePrice, EarringListPrice)
+VALUES
+(1, 'E001', 'Classic Hoop', 'A timeless classic hoop earring.', 'Gold', 30, 1, 50.00, 100.00),
+(2, 'E002', 'Diamond Stud', 'Elegant diamond stud earrings.', 'Silver', 5, 2, 150.00, 300.00),
+(3, 'E003', 'Pearl Drop', 'Sophisticated pearl drop earrings.', 'Pearl', 15, 3, 80.00, 160.00),
+(4, 'E004', 'Crystal Chandelier', 'Sparkling crystal chandelier earrings.', 'Crystal', 40, 4, 120.00, 240.00),
+(5, 'E005', 'Vintage Clip-On', 'Retro style clip-on earrings.', 'Brass', 25, 5, 30.00, 60.00);
+
+SELECT * FROM Earring;

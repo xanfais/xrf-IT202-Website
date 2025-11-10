@@ -14,3 +14,14 @@ DateTimeCreated     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 DateTimeUpdated     TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 PRIMARY KEY ( EarringTypeID )
 );
+
+INSERT INTO EarringTypes (EarringTypeID, EarringTypeCode, EarringTypeName, EarringStockNumber)
+VALUES
+(1, 'HT001', 'Hoop Earrings', 'HSN1001'),
+(2, 'ST002', 'Stud Earrings', 'SSN2002'),
+(3, 'DR003', 'Drop Earrings', 'DSN3003'),
+(4, 'CH004', 'Chandelier Earrings', 'CSN4004'),
+(5, 'CL005', 'Clip-On Earrings', 'CLSN5005');
+
+SELECT * FROM EarringTypes;
+SELECT * FROM EarringTypes JOIN Earring ON Earring.EarringTypeID = EarringTypes.EarringTypeID;

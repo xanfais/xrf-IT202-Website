@@ -8,11 +8,11 @@ xrf@njit.edu
 */
 error_log("\$_POST " . print_r($_POST, true));
 require_once("earringtype.php");
-$earringtypeID = $_POST['earringtypeID'];
-$earringtype = EarringType::findEarringType($earringtypeID);
-$result = $earringtype->removeEarringType();
+$earringTypeID = $_POST['earringtypeID'];
+$earringType = EarringType::findEarringType($earringTypeID);
+$result = $earringType->removeEarringType();
 if ($result)
-   echo "<h2>EarringType $earringtypeID removed</h2>\n";
+   echo "<h2>EarringType $earringTypeID removed</h2>\n";
 else
-   echo "<h2>Sorry, problem removing earringtype $earringtypeID</h2>\n";
+   echo "<h2>Sorry, problem removing earringtype $earringTypeID</h2>\n";
 ?>

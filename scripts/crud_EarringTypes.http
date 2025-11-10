@@ -10,18 +10,14 @@ xrf@njit.edu
 POST http://localhost:3000/addearringtype.test.php
 Content-Type: application/x-www-form-urlencoded
 
-earringtypeID=100
-&earringtypeCode=ERG
-&earringtypeName=Earrings
+earringtypeID=1&earringtypeCode=HT001&earringtypeName=Hoop%20Earrings&earringStockNumber=HSN1001
 ###
 GET http://localhost:3000/listearringstype.test.php
 ###
 POST http://localhost:3000/changeearringtype.test.php
 Content-Type: application/x-www-form-urlencoded
 
-earringtypeID=100
-&earringtypeCode=ERG
-&earringtypeName=Earring
+earringtypeID=100&earringtypeCode=ERG&earringtypeName=Earring&earringStockNumber=
 ###
 POST http://localhost:3000/removeearringtype.test.php
 Content-Type: application/x-www-form-urlencoded
@@ -31,20 +27,14 @@ earringtypeID=100
 POST http://localhost:3000/addearring.test.php
 Content-Type: application/x-www-form-urlencoded
 
-earringID=2000
-&earringName=Studs
-&earringtypeID=100
-&listPrice=435.00
+earringID=2000&earringName=Studs&earringtypeID=100&listPrice=435.00
 ###
 GET http://localhost:3000/listearrings.test.php
 ###
 POST http://localhost:3000/changeearring.test.php
 Content-Type: application/x-www-form-urlencoded
 
-earringID=2000
-&earringName=Hoops
-&earringtypeID=100
-&listPrice=799.00
+earringID=2000&earringName=Hoops&earringtypeID=100&listPrice=799.00
 ###
 POST http://localhost:3000/removeearring.test.php
 Content-Type: application/x-www-form-urlencoded

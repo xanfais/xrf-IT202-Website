@@ -13,6 +13,12 @@ class Earring
    public $earringName;
    public $earringtypeID;
    public $listPrice;
+    // Optional fields that map to the database columns
+    public $earringCode;
+    public $earringDescription;
+    public $material;
+    public $diameter;
+    public $earringWholesalePrice;
    function __construct(
         $earringID,
         $earringName,
@@ -28,20 +34,31 @@ class Earring
    {
        $output = "<h2>Earring : $this->earringID</h2>" .
            "<h2>Name: $this->earringName</h2>\n";
-       "<h2>earringtype ID: $this->earringtypeID at $this->listPrice</h2>\n";
+       $output .= "<h2>earringtype ID: $this->earringtypeID at $this->listPrice</h2>\n";
        return $output;
    }
    function saveEarring()
    {
        $db = getDB();
-       $query = "INSERT INTO Earring VALUES (?, ?, ?, ?)";
+       // Table has many columns; explicitly insert into the main columns and supply defaults for others
+       $query = "INSERT INTO Earring (EarringID, EarringCode, EarringName, EarringDescription, Material, Diameter, EarringTypeID, EarringWholesalePrice, EarringListPrice) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
        $stmt = $db->prepare($query);
+       $code = isset($this->earringCode) ? $this->earringCode : '';
+       $desc = isset($this->earringDescription) ? $this->earringDescription : '';
+       $material = isset($this->material) ? $this->material : '';
+       $diameter = isset($this->diameter) ? $this->diameter : 0;
+       $wholesale = isset($this->earringWholesalePrice) ? $this->earringWholesalePrice : 0.0;
        $stmt->bind_param(
-           "isid",
-           $this->earringID,     // integer data type
-           $this->earringName,   // string data type
-           $this->earringtypeID, // integer data type
-           $this->listPrice   // float data type
+           "issssidd",
+           $this->earringID,
+           $code,
+           $this->earringName,
+           $desc,
+           $material,
+           $diameter,
+           $this->earringtypeID,
+           $wholesale,
+           $this->listPrice
        );
        $result = $stmt->execute();
        $db->close();
@@ -56,10 +73,10 @@ class Earring
            $earrings = array();
            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                $earring = new Earring(
-                   $row['earringID'],
-                   $row['earringName'],
-                   $row['earringtypeID'],
-                   $row['listPrice']
+               $row['EarringID'],
+               $row['EarringName'],
+               $row['EarringTypeID'],
+               $row['EarringListPrice']
                );
                array_push($earrings, $earring);
            }
@@ -73,15 +90,15 @@ class Earring
    static function findEarring($earringID)
    {
        $db = getDB();
-       $query = "SELECT * FROM Earring WHERE earringID = $earringID";
+    $query = "SELECT * FROM Earring WHERE EarringID = $earringID";
        $result = $db->query($query);
        $row = $result->fetch_array(MYSQLI_ASSOC);
        if ($row) {
            $earring = new Earring(
-               $row['earringID'],
-               $row['earringName'],
-               $row['earringtypeID'],
-               $row['listPrice']
+               $row['EarringID'],
+               $row['EarringName'],
+               $row['EarringTypeID'],
+               $row['EarringListPrice']
            );
            $db->close();
            return $earring;
@@ -90,11 +107,11 @@ class Earring
            return NULL;
        }
    }
-   function updatEearring()
+   function updateEarring()
    {
        $db = getDB();
-       $query = "UPDATE Earring SET earringName= ?, " .
-           "earringtypeID= ?, listPrice= ? WHERE earringID = $this->earringID";
+       // Update the main editable fields and supply defaults for optional columns if needed
+       $query = "UPDATE Earring SET EarringName = ?, EarringTypeID = ?, EarringListPrice = ? WHERE EarringID = $this->earringID";
        $stmt = $db->prepare($query);
        $stmt->bind_param(
            "sid",
@@ -117,16 +134,16 @@ class Earring
    static function getEarringsByEarringType($earringtypeID)
    {
        $db = getDB();
-       $query = "SELECT * from Earring where earringtypeID = $earringtypeID";
+    $query = "SELECT * from Earring where EarringTypeID = $earringtypeID";
        $result = $db->query($query);
        if (mysqli_num_rows($result) > 0) {
            $earrings = array();
            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                $earring = new Earring(
-                   $row['earringID'],
-                   $row['earringName'],
-                   $row['earringtypeID'],
-                   $row['listPrice']
+                   $row['EarringID'],
+                   $row['EarringName'],
+                   $row['EarringTypeID'],
+                   $row['EarringListPrice']
                );
                array_push($earrings, $earring);
            }
