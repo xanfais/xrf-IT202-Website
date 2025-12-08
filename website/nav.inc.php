@@ -11,7 +11,8 @@ xrf@njit.edu
     <div class="navigation" style="float: left; height: 100%; min-width: 175px; width: auto;">
       <table width="100%" cellpadding="3">
         <?php
-         echo "<td><h3>Welcome, {$_SESSION['login']}</h3></td>";
+         $displayName = isset($_SESSION['firstName']) && isset($_SESSION['lastName']) ? "{$_SESSION['firstName']} {$_SESSION['lastName']}" : 'User';
+         echo "<td><h3>Welcome, $displayName</h3></td>";
          ?>
         <tr>
           <td><a href="index.php"><strong>Home</strong></a></td>

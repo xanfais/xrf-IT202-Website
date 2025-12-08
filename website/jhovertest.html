@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Testing Mouse Events</title>
+    <style>
+        .yellow {
+            background-color: yellow;
+            width: 400px;
+        }
+
+        .red {
+            background-color: red;
+            width: 400px;
+        }
+    </style>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>    <script>
+        jQuery(document).ready(function() {
+            $("p").hover(
+                function() {
+                    $(this).removeClass("yellow").addClass("red");
+                },
+                function() {
+                    $(this).removeClass("red").addClass("yellow");
+                });
+            });
+    </script>
+</head>
+<body>
+    <h1>This is a test of some mouse events</h1>
+    <p class="yellow">This is some content that will change color!</p>
+    <p>This is some content that will change color too!</p>
+</body>
+</html>

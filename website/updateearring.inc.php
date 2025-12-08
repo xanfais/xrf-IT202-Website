@@ -12,8 +12,9 @@ if (!isset($_POST['earringID']) or (!is_numeric($_POST['earringID']))) {
    <a href="index.php?content=listearrings">List earrings</a>
    <?php
 } else {
+   require_once("earring.php");
    $earringID = $_POST['earringID'];
-   $earring = Earring::findearring($earringID);
+   $earring = Earring::findEarring($earringID);
    if ($earring) {
    ?>
        <h2>Update Earring <?php echo $earring->earringID; ?></h2><br>

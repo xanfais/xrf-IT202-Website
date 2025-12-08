@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<p>Xander Faison, IT202-005, Internet Applications,In-Class Exercise 13, xrf@njit.edu, 12/03/2025</p>
+<html> 
+<head>
+    <title>Changing properties with jQuery</title>
+</head>
+<style>
+    div {
+        background-color: yellow;
+    }
+</style>
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script><script>
+    jQuery(document).ready(function() {
+        $("button").click(function() {
+            $("p").css("background-color", "red");
+            $("p").css("font-size", "50px");
+        });
+    });
+</script>
+<style>
+    div {
+        background-color: rgb(31, 53, 141);
+    }
+</style>
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script><script>
+    jQuery(document).ready(function() {
+        $("button").click(function() {
+            $("p").css("background-color", "green");
+            $("p").css("font-size", "88px");
+        });
+    });
+</script>
+<body>
+    <div id = "container">
+        <h1>This is my heading</h1>
+        <p>This is some content on my webpage</p>
+        <button>Test button</button>
+    </div>
+</body>
+</html>

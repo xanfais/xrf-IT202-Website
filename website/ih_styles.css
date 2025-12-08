@@ -1,0 +1,363 @@
+  /*
+Xander Faison
+12/05/2025
+IT-202-005
+Phase 5 Assignment: JavaScript
+xrf@njit.edu
+*/
+* {
+   box-sizing: border-box;
+}
+
+body {
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   font-size: 14px;
+   background: linear-gradient(135deg, #f5f0e8 0%, #e8dfd5 100%);
+   color: #2c1810;
+   margin: 0;
+   padding: 0;
+   overflow-x: hidden;
+   line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+   margin: 0;
+   padding: 0;
+   font-weight: 600;
+}
+
+h1 {
+   font-family: 'Georgia', serif;
+   font-size: 32px;
+   color: #8b4513;
+   letter-spacing: 1px;
+}
+
+h2 {
+   font-family: 'Georgia', serif;
+   font-size: 22px;
+   color: #6b3410;
+   margin-bottom: 15px;
+}
+
+h3 {
+   font-family: 'Segoe UI', sans-serif;
+   font-size: 16px;
+   color: #d4af37;
+   font-weight: 600;
+}
+
+h4 {
+   font-family: 'Segoe UI', sans-serif;
+   font-size: 14px;
+   color: #2c1810;
+   font-weight: 600;
+}
+
+footer {
+   font-family: 'Segoe UI', sans-serif;
+   font-size: 12px;
+   background: linear-gradient(135deg, #1a0f0a 0%, #2c1810 100%);
+   color: #d4af37;
+   padding: 15px;
+   border-top: 3px solid #d4af37;
+   text-align: center;
+}
+
+main {
+   padding: 20px;
+   float: left;
+   width: 55%;
+   height: 100%;
+   background-color: rgba(255, 255, 255, 0.7);
+   border-radius: 8px;
+   margin: 5px;
+}
+
+main table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 15px;
+}
+
+main table th {
+   background-color: #8b4513;
+   color: #f5f0e8;
+   padding: 12px;
+   text-align: left;
+   font-weight: 600;
+   border-bottom: 2px solid #d4af37;
+}
+
+main table tr:nth-child(even) {
+   background-color: #f9f7f3;
+}
+
+main table tr:hover {
+   background-color: #f0e6d5;
+}
+
+main td {
+   padding: 10px 12px;
+   border-bottom: 1px solid #e0d5c5;
+}
+
+header {
+   padding: 0;
+   border-bottom: 3px solid #d4af37;
+   height: auto;
+   width: 100%;
+   background: linear-gradient(135deg, #8b4513 0%, #6b3410 100%);
+}
+
+.navigation {
+   padding: 15px;
+   border-right: 3px solid #d4af37;
+   color: #f5f0e8;
+   background: linear-gradient(135deg, #3d2817 0%, #2c1810 100%);
+   float: left;
+   width: 20%;
+   height: 100%;
+   min-width: 175px;
+   border-radius: 0 0 8px 0;
+}
+
+.navigation table {
+   width: 100%;
+}
+
+.navigation tr {
+   margin: 5px 0;
+}
+
+.navigation td {
+   padding: 8px 0;
+   border: none;
+}
+
+a, a:link {
+   color: #d4af37;
+   text-decoration: none;
+   transition: all 0.3s ease;
+}
+
+a:active {
+   color: #b8860b;
+}
+
+nav a, nav a:link {
+   color: #d4af37;
+   text-decoration: none;
+   font-weight: 500;
+}
+
+nav a:visited {
+   color: #c5a028;
+}
+
+nav a:hover {
+   color: #f0e68c;
+   text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+   transform: translateX(5px);
+}
+
+nav a:active {
+   color: #b8860b;
+}
+
+input, textarea, select {
+   border: 2px solid #d4af37;
+   background-color: #fff9f0;
+   color: #2c1810;
+   border-radius: 6px;
+   padding: 8px 12px;
+   font-family: 'Segoe UI', sans-serif;
+   font-size: 13px;
+   transition: all 0.3s ease;
+}
+
+input[type=submit], input[type=button] {
+   font-family: 'Georgia', serif;
+   font-size: 14px;
+   background: linear-gradient(135deg, #8b4513 0%, #6b3410 100%);
+   color: #d4af37;
+   cursor: pointer;
+   font-weight: 600;
+   padding: 10px 20px;
+   border-radius: 6px;
+   transition: all 0.3s ease;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+input[type=submit]:hover, input[type=button]:hover {
+   background: linear-gradient(135deg, #6b3410 0%, #4a1f0a 100%);
+   color: #f0e68c;
+   box-shadow: 0 6px 12px rgba(212, 175, 55, 0.3);
+   transform: translateY(-2px);
+}
+
+input[type=submit]:active, input[type=button]:active {
+   transform: translateY(0px);
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input:required:invalid {
+   border-color: #d9534f;
+   background-color: #f9f0ed;
+}
+
+input:required:valid {
+   border-color: #5cb85c;
+   background-color: #f0fdf4;
+}
+
+input:focus, textarea:focus, select:focus {
+   outline: none;
+   border-color: #d4af37;
+   background-color: #fffef9;
+   box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+section {
+   display: flex;
+   gap: 0;
+}
+
+aside {
+   font-family: 'Segoe UI', sans-serif;
+   font-size: 13px;
+   padding: 20px;
+   border-left: 3px solid #d4af37;
+   color: #f5f0e8;
+   background: linear-gradient(135deg, #3d2817 0%, #2c1810 100%);
+   float: right;
+   width: 20%;
+   height: 100%;
+   border-radius: 0 0 8px 0;
+}
+
+aside h1 {
+   color: #d4af37;
+   font-size: 18px;
+}
+
+aside h3 {
+   color: #d4af37;
+   margin-top: 15px;
+   margin-bottom: 5px;
+}
+
+aside span {
+   color: #f0e68c;
+   font-weight: 600;
+}
+
+table {
+   border-collapse: collapse;
+   width: 100%;
+   margin: 15px 0;
+}
+
+tr {
+   margin: 5px 0;
+}
+
+hr {
+   border: none;
+   border-top: 2px solid #d4af37;
+   margin: 10px 0;
+}
+
+strong {
+   color: #d4af37;
+   font-weight: 600;
+}
+
+/* Form and content styling */
+form {
+   background: linear-gradient(135deg, #fff9f0 0%, #f5f0e8 100%);
+   padding: 20px;
+   border-radius: 8px;
+   border: 1px solid #e0d5c5;
+   margin: 15px 0;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+form table {
+   width: 100%;
+}
+
+form table td {
+   padding: 12px;
+}
+
+form table tr td:first-child {
+   font-weight: 600;
+   color: #6b3410;
+   width: 30%;
+}
+
+label {
+   color: #2c1810;
+   font-weight: 600;
+   display: block;
+   margin-bottom: 5px;
+}
+
+/* Success and error messages */
+h2 {
+   border-bottom: 2px solid #d4af37;
+   padding-bottom: 10px;
+}
+
+ul {
+   margin: 15px 0;
+   padding-left: 25px;
+}
+
+ul li {
+   margin: 8px 0;
+   color: #2c1810;
+}
+
+/* Link styling */
+main a {
+   color: #8b4513;
+   font-weight: 600;
+   padding: 5px 10px;
+   border-bottom: 2px solid transparent;
+   transition: all 0.3s ease;
+}
+
+main a:hover {
+   color: #d4af37;
+   border-bottom: 2px solid #d4af37;
+}
+
+/* Message boxes */
+.success-message {
+   background-color: #d4edda;
+   border-left: 4px solid #28a745;
+   padding: 15px;
+   margin: 15px 0;
+   border-radius: 4px;
+   color: #155724;
+}
+
+.error-message {
+   background-color: #f8d7da;
+   border-left: 4px solid #dc3545;
+   padding: 15px;
+   margin: 15px 0;
+   border-radius: 4px;
+   color: #721c24;
+}
+
+.info-message {
+   background-color: #d1ecf1;
+   border-left: 4px solid #17a2b8;
+   padding: 15px;
+   margin: 15px 0;
+   border-radius: 4px;
+   color: #0c5460;
+}

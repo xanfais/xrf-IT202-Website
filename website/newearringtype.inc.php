@@ -13,6 +13,10 @@
            <td>EarringType Name:</td>
            <td><input type="text" name="earringtypeName" size="50"></td>
        </tr>
+       <tr>
+           <td>Earring Stock Number:</td>
+           <td><input type="text" name="earringStockNumber" size="20"></td>
+       </tr>
    </table><br>
    <input type="submit" value="Submit New earringtype">
    <input type="hidden" name="content" value="addearringtype">

@@ -6,6 +6,7 @@ IT-202-005
 Phase 1 Assignment: Login and Logout
 xrf@njit.edu
 */
+ob_start();
 session_start();
 require_once("earringtype.php");
 require_once("earring.php");
@@ -13,13 +14,16 @@ require_once("earring.php");
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Earring Shop</title>
+   <title>Earring Manager</title>
+   <link rel="stylesheet" type="text/css" href="ih_styles.css">
+   <link rel ="icon" type="image/svg+xml" href="images/logo.svg">
+   <script src="realtime.js"></script>
 </head>
 <body>
    <header>
        <?php include("header.inc.php"); ?>
    </header>
-   <section style="height: 425px;">
+   <section style="display: flex; gap: 0; background-color: rgba(255, 255, 255, 0.5); padding: 5px; border-radius: 0 8px 8px 0;">
        <nav>
            <?php include("nav.inc.php"); ?>
        </nav>
@@ -32,9 +36,19 @@ require_once("earring.php");
            }
            ?>
        </main>
+        <aside>
+           <?php include("aside.inc.php"); ?>
+           <script>
+               getRealTime();
+               setInterval(getRealTime, 5000);
+           </script>
+        </aside>
    </section>
    <footer>
        <?php include("footer.inc.php"); ?>
    </footer>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>
